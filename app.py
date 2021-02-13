@@ -6,6 +6,19 @@ app = Flask(__name__)
 GPIO.setmode(GPIO.BCM)
 
 
+class VideoCamera(object):
+    def __init__(self):
+        self.cap = cv2.VideoCapture(0)
+
+    def __del__(self):
+        self.cap.release()
+
+    def get_frame(self):
+        success, image = self.cap.read()
+        ret, jpeg = cv2.imencode('.jpg', image)
+        return jpeg.tobytes()
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -61,16 +74,3 @@ def stop():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
-
-
-class VideoCamera(object):
-    def __init__(self):
-        self.cap = cv2.VideoCapture(0)
-
-    def __del__(self):
-        self.cap.release()
-
-    def get_frame(self):
-        success, image = self.cap.read()
-        ret, jpeg = cv2.imencode('.jpg', image)
-        return jpeg.tobytes()
