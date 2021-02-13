@@ -38,6 +38,7 @@ def video_feed():
 
 @app.route('/forward', methods=['GET'])
 def forward():
+    print("forward")
     GPIO.setup(5, GPIO.OUT)
     GPIO.output(5, GPIO.HIGH)
     GPIO.setup(9, GPIO.OUT)
@@ -47,6 +48,7 @@ def forward():
 
 @app.route('/left', methods=['GET'])
 def left():
+    print("left")
     GPIO.setup(5, GPIO.OUT)
     GPIO.output(5, GPIO.HIGH)
     GPIO.setup(9, GPIO.OUT)
@@ -56,6 +58,7 @@ def left():
 
 @app.route('/right', methods=['GET'])
 def right():
+    print("right")
     GPIO.setup(5, GPIO.OUT)
     GPIO.output(5, GPIO.LOW)
     GPIO.setup(9, GPIO.OUT)
@@ -65,6 +68,7 @@ def right():
 
 @app.route('/stop', methods=['GET'])
 def stop():
+    print("stop")
     GPIO.setup(5, GPIO.OUT)
     GPIO.output(5, GPIO.LOW)
     GPIO.setup(9, GPIO.OUT)
