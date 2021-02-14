@@ -3,7 +3,6 @@ import cv2
 import RPi.GPIO as GPIO
 
 app = Flask(__name__)
-GPIO.setmode(GPIO.BCM)
 
 
 class VideoCamera(object):
@@ -76,6 +75,14 @@ def stop():
     return "200"
 
 
+def _init_():
+    GPIO.setmode(GPIO.BCM)
+    for i in range(22):
+        GPIO.setup(i, GPIO.OUT)
+        GPIO.output(i, GPIO.LOW)
+
+
 if __name__ == '__main__':
+    _init_()
     app.run(host='0.0.0.0', port=5000)
     # app.run(host='192.168.1.19', port=5000)
