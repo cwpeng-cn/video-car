@@ -1,6 +1,6 @@
-from flask import Flask, render_template, Response, request, redirect
+from flask import Flask, render_template, Response
 import cv2
-import RPi.GPIO  as GPIO
+import RPi.GPIO as GPIO
 
 app = Flask(__name__)
 GPIO.setmode(GPIO.BCM)
@@ -43,7 +43,7 @@ def forward():
     GPIO.output(5, GPIO.HIGH)
     GPIO.setup(9, GPIO.OUT)
     GPIO.output(9, GPIO.HIGH)
-    return redirect("/")
+    return "200"
 
 
 @app.route('/left', methods=['GET'])
@@ -53,7 +53,7 @@ def left():
     GPIO.output(5, GPIO.HIGH)
     GPIO.setup(9, GPIO.OUT)
     GPIO.output(9, GPIO.LOW)
-    return redirect("/")
+    return "200"
 
 
 @app.route('/right', methods=['GET'])
@@ -63,7 +63,7 @@ def right():
     GPIO.output(5, GPIO.LOW)
     GPIO.setup(9, GPIO.OUT)
     GPIO.output(9, GPIO.HIGH)
-    return redirect("/")
+    return "200"
 
 
 @app.route('/stop', methods=['GET'])
@@ -73,9 +73,9 @@ def stop():
     GPIO.output(5, GPIO.LOW)
     GPIO.setup(9, GPIO.OUT)
     GPIO.output(9, GPIO.LOW)
-    return redirect("/")
+    return "200"
 
 
 if __name__ == '__main__':
-    # app.run(host='0.0.0.0', port=5000)
-    app.run(host='192.168.1.19', port=5000)
+    app.run(host='0.0.0.0', port=5000)
+    # app.run(host='192.168.1.19', port=5000)

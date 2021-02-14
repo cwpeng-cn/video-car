@@ -6,7 +6,7 @@
     <h1>Video Streaming Demonstration</h1>
     <img src="{{ url_for('video_feed') }}">
 
-    <form action="forward?" method="get">
+    <form action="forward?" method="get" target="nm_iframe">
         <input type="submit" name="forward" value="forward" />
     </form>
     <form action="left?" method="get">
@@ -18,5 +18,7 @@
     <form action="stop?" method="get">
         <input type="submit" name="stop" value="stop" />
     </form>
+
+  <iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>
   </body>
 </html>
